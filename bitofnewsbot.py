@@ -36,7 +36,7 @@ def main():
 				comment = formComment(sentences, submission)
 		
 			submission.add_comment(comment);
-			print comment
+			print(comment)
 
 	
 
@@ -54,7 +54,7 @@ def getSubmissions():
 	return r.get_subreddit(subreddits).get_hot(limit=1000)
 
 def formComment(sentences, submission):
-	print submission.title+": "+submission.url
+	print(submission.title+": "+submission.url)
 
 	point = submission.ups - submission.downs
 	comment = "**Article summary:** \n"
@@ -63,7 +63,8 @@ def formComment(sentences, submission):
 		return None
 	for sentence in sentences:
 			if count < sentences_per_summary:
-				comment += ("\n>* " + sentence + "\n");
+				sentence.replace('\n', ' ')
+				comment += ("\n>* " + sentence + "\n")
 				count = count + 1
 	comment += "\n^I'm ^a ^bot, ^v2. ^Report ^problems [^here](http://reddit.com/r/bitofnewsbot). \n\n**^Learn ^how ^it ^works: [^Bit ^of ^News](http://www.bitofnews.com/about.html)**"
 	return comment
